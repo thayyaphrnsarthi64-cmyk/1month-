@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 1 Month Anniversary</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 30px;
+      text-align: center;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease-in-out;
+      position: relative;
+      z-index: 10;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #e63946;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    .heart {
+      font-size: 3rem;
+      color: #e63946;
+      animation: pulse 1.5s infinite;
+      margin: 20px 0;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1);}
+      50% { transform: scale(1.2);}
+      100% { transform: scale(1);}
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -50px;
+      color: #ff6b6b;
+      font-size: 2rem;
+      animation: floatUp 6s linear forwards;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(0) scale(1);}
+      100% {transform: translateY(-110vh) scale(1.5);}
+    }
+  </style>
+</head>
+<body>
+  <!-- การ์ดคลิกได้ -->
+  <a href="https://example.com" target="_blank">
+    <div class="card">
+      <h1>💖 สุขสันต์ครบรอบ 1 เดือน 💖</h1>
+      <div class="heart">❤️</div>
+      <p>
+        ขอบคุณที่อยู่เคียงข้างกันตลอด 1 เดือนที่ผ่านมา  
+        ทุกวินาทีที่มีเธอคือความสุขที่สุดของฉัน  
+      </p>
+      <h1>ฉันรักเธอที่สุดเลย 💕</h1>
+      <p>✨ คลิกการ์ดนี้สิ ✨</p>
+    </div>
+  </a>
+
+  <!-- เพลง -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/05/24/audio_04c9d3d9b8.mp3?filename=romantic-background-music-144998.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // ฟังก์ชันสุ่มหัวใจลอยอัตโนมัติ
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    // ให้หัวใจลอยขึ้นเรื่อย ๆ
+    setInterval(createHeart, 800);
+
+    // คลิกแล้วหัวใจเพิ่ม
+    document.addEventListener("click", (e) => {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.textContent = "❤️";
+      heart.style.left = e.clientX + "px";
+      heart.style.top = e.clientY + "px";
+      heart.style.position = "absolute";
+      heart.style.fontSize = "30px";
+      heart.style.animationDuration = "3s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+    });
+
+    // autoplay music (บางเบราว์เซอร์บล็อก ต้องกดครั้งแรกก่อน)
+    const music = document.getElementById("bg-music");
+    document.body.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+      }
+    });
+  </script>
+</body>
+</html>
